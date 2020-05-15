@@ -1,0 +1,16 @@
+{
+  "name": "target-station",
+  "version": "1.0.0",
+  "description": "This is the server running on the target pc that is to be controlled remotely.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "author": "Suman Barick",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "robotjs": "^0.6.0"
+  }
+}
