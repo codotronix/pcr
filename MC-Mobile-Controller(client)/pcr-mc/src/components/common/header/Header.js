@@ -1,26 +1,26 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
+import { Link } from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu';
 import { headerbarRoutes } from '../../../utils/routes'
 
 const useStyles = makeStyles({
     root: {
         position: 'relative',
-        listStyle: 'none',
-        color: '#fff',
         backgroundColor: '#000',
         height: 40,
         display: 'flex',
         justifyContent: 'space-around',
         paddingLeft: 40,
-        '& > li': {
+        '& > a': {
             display: 'inline-flex',
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center'
         },
-        '& > li svg': {
-            fontSize: 26
+        '& > a > svg': {
+            fontSize: 26,
+            color: '#fff'
         }
     },
     menuBtn: {
@@ -29,23 +29,24 @@ const useStyles = makeStyles({
         left: 0,
         padding: '0 5px',
         height: '100%',
-        fontSize: 26
+        fontSize: 26,
+        color: '#fff'
     }
 })
 
 const Header = props => {
     const classes = useStyles()
     return (
-        <ul className={classes.root}>
+        <div className={classes.root}>
             <MenuIcon className={classes.menuBtn} />
             {
                 headerbarRoutes.map (r => (
-                    <li key={r.name}>
+                    <Link to={r.path} key={r.name}>
                         <r.icon />
-                    </li>
+                    </Link>
                 ))
             }
-        </ul>
+        </div>
     )
 }
 

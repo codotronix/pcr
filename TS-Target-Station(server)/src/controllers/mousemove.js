@@ -10,9 +10,10 @@ const robot = require("robotjs")
 const mouseMove = (req, res, next) => {
     try {
         const diff = req.body;
+        // console.log(diff)
         const currentPos = robot.getMousePos()
-        // robot.moveMouseSmooth(currentPos.x + diff.x, currentPos.y + diff.y)
-        robot.moveMouse(currentPos.x + diff.x, currentPos.y + diff.y)
+        robot.moveMouseSmooth(currentPos.x + diff.x, currentPos.y + diff.y)
+        // robot.moveMouse(currentPos.x + diff.x, currentPos.y + diff.y)
         res.json({
             status: 200
         })
