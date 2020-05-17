@@ -4,6 +4,8 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import _ from 'lodash'
 import axios from 'axios'
+import { getRoot } from '../../../utils/config'
+const ROOT = getRoot()
 
 const useStyles = makeStyles({
     root: {
@@ -63,11 +65,11 @@ const Trackpad = props => {
     let prevMousePos = null
     let pollTime = 100
 
-    useEffect(() => {
-        axios.post('http://192.168.0.102:9090/move-mouse', {x: 99, y: 102})
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    }, [])
+    // useEffect(() => {
+    //     axios.post('http://192.168.0.102:9090/move-mouse', {x: 99, y: 102})
+    //     .then(res => console.log(res))
+    //     .catch(err => console.log(err))
+    // }, [])
 
     const setMousePrev = e => {
         const pageX = Math.round(e.pageX || e.touches[0].pageX)
@@ -95,16 +97,23 @@ const Trackpad = props => {
         // console.log(pos)
         prevMousePos = pos
 
-        axios.post('http://192.168.0.102:9090/move-mouse', diff)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        post(`${ROOT}/mouse-move`, diff)
+        // .then(res => console.log(res))
+        // .catch(err => console.log(err))
     }, 
     pollTime)
-    
 
-    const mouseLC = e => {}
-    const mouseRC = e => {}
-    const mouseDC = e => {}
+    const post = (url, data) => axios.post(url, data)
+
+    /**
+     * button = "left" | "right" | "middle"
+     * clickType = "click" | "double" | "down" | "up"   
+     */
+    const postMouseClick = (button, clickType) => post(`${ROOT}/mouse-click`, { button, clickType })
+
+    const mouseLC = e => { postMouseClick('left', 'click') }
+    const mouseRC = e => { postMouseClick('right', 'click') }
+    const mouseDC = e => { postMouseClick('left', 'double') }
     const kbUpArrow = e => {}
     const kbDownArrow = e => {}
 
@@ -114,7 +123,8 @@ const Trackpad = props => {
                 onTouchStart={setMousePrev}
                 onTouchEnd={unsetMousePrev}
                 onTouchMove={trackMouse}
-                // onMouseMove={trackMouse}
+                onClick={mouseLC}
+                onDoubleClick={mouseDC}
             >
                 TRACKPAD 
                 
