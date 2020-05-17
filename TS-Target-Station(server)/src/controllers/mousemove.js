@@ -9,6 +9,7 @@ const robot = require("robotjs")
  */
 const mouseMove = (req, res, next) => {
     try {
+        // console.log('req.body 1 = ', req.body)
         const diff = req.body;
         // console.log(diff)
         const currentPos = robot.getMousePos()
