@@ -12,7 +12,7 @@ PCRemote, as the name suggests, is meant to be a Remote Controller for controlli
 ## Components
 Here goes the 3 major components that comprises PCR. To understand how they are linked together, see the [Architecture](https://github.com/codotronix/pcr#architecture) section of this document
 
-- **MC (Mobile Controller)** is being developed and can be found in the github repo of PCR-MC at [https://github.com/codotronix/pcr-mc](https://github.com/codotronix/pcr-mc). It is a frontend / UI application created with `ReactJS`
+- **MC (Mobile Controller)** can be found in its own github repo i.e. PCR-MC at [https://github.com/codotronix/pcr-mc](https://github.com/codotronix/pcr-mc). It is a frontend / UI application created with `ReactJS`
 
 - **IS (Intermediate Server)**
 
